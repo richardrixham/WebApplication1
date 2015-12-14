@@ -17,25 +17,29 @@ namespace WebApplication1.Controllers
 
         public ActionResult GetView()
         {
-            Employee emp = new Employee();
-            emp.FirstName = "Sukesh";
-            emp.LastName = "Marla";
-            emp.Salary = 20000;
+            EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
+            EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
+            List<Employee> employees = empBal.GetEmployees();
+            List<EmployeeViewModel> empViewModels = new List<EmployeeViewModel>();
 
-            EmployeeViewModel vmEmp = new EmployeeViewModel();
-            vmEmp.EmployeeName = emp.FirstName + " " + emp.LastName;
-            vmEmp.Salary = emp.Salary.ToString("C");
-            if(emp.Salary > 15000)
+            foreach (Employee emp in employees)
             {
-                vmEmp.SalaryColor = "yellow";
+                EmployeeViewModel empViewModel = new EmployeeViewModel();
+                empViewModel.EmployeeName = emp.FirstName + " " + emp.LastName;
+                empViewModel.Salary = emp.Salary.ToString("C");
+                if (emp.Salary > 15000)
+                {
+                    empViewModel.SalaryColor = "yellow";
+                }
+                else
+                {
+                    empViewModel.SalaryColor = "green";
+                }
+                empViewModels.Add(empViewModel);
             }
-            else
-            {
-                vmEmp.SalaryColor = "green";
-            }
-
-            vmEmp.UserName = "Admin";
-            return View("MyView", vmEmp);
+            employeeListViewModel.Employees = empViewModels;
+            employeeListViewModel.UserName = "admin";
+            return View("MyView", employeeListViewModel);
         }
     }
 }
