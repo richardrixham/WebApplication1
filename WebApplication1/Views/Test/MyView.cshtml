@@ -1,8 +1,9 @@
 ﻿
+@model  WebApplication1.ViewModels.EmployeeViewModel
+
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -11,14 +12,13 @@
     <title>MyView</title>
 </head>
 <body>
+    
+    Hello, @Model.UserName
+    <hr />
     <div> 
-     @{ 
-         WebApplication1.Models.Employee emp = (WebApplication1.Models.Employee)
-             ViewBag.Employee;
-     }
-        <b>Employee Details</b><br/>
-        Employee Name: @emp.FirstName @emp.LastName<br/>
-        Employee Salary: @emp.Salary.ToString("C")
+        <b>Employee Details</b><br />
+        Employee Name: @Model.EmployeeName<br />
+        <span style="background-color:@Model.SalaryColor">Employee Salary:@Model.Salary</span>
     </div>
 </body>
 </html>
