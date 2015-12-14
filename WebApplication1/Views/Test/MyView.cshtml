@@ -14,7 +14,7 @@
     <div> 
      @{ 
          WebApplication1.Models.Employee emp = (WebApplication1.Models.Employee)
-             ViewData["Employee"];
+             ViewBag.Employee;
      }
         <b>Employee Details</b><br/>
         Employee Name: @emp.FirstName @emp.LastName<br/>
