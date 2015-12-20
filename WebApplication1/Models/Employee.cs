@@ -15,7 +15,7 @@ namespace WebApplication1.Models
         public string FirstName { get; set; }
         [StringLength(5,ErrorMessage ="Last name text should not be more than 5 characters in length")]
         public string LastName { get; set; }
-        public int Salary { get; set; }
+        public int? Salary { get; set; }
     }
 
     public class FirstNameValidation : ValidationAttribute

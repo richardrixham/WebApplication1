@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult AddNew()
         {
-            return View("CreateEmployee");
+            return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
@@ -64,7 +64,7 @@ namespace WebApplication1.Controllers
             {
                 EmployeeViewModel empViewModel = new EmployeeViewModel();
                 empViewModel.EmployeeName = emp.FirstName + " " + emp.LastName;
-                empViewModel.Salary = emp.Salary.ToString("C");
+                empViewModel.Salary = emp.Salary.ToString();
                 if (emp.Salary > 15000)
                 {
                     empViewModel.SalaryColor = "yellow";
