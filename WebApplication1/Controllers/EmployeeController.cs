@@ -53,6 +53,7 @@ namespace WebApplication1.Controllers
             return new EmptyResult();
         }
 
+
         public ActionResult Index()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
