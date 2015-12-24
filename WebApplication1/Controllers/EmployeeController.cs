@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -15,11 +16,13 @@ namespace WebApplication1.Controllers
             return "Hello World is old now. It&rsquo;s time for wassup Bro;)";
         }
 
+        [AdminFilter]
         public ActionResult AddNew()
         {
             return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
+        [AdminFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -86,5 +89,19 @@ namespace WebApplication1.Controllers
             employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
             return View("Index", employeeListViewModel);
         }
+
+        [ChildActionOnly]
+        public ActionResult GetAddNewLink()
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                return PartialView("AddNewLink");
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+
     }
 }

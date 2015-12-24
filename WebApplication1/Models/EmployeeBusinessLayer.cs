@@ -23,18 +23,21 @@ namespace WebApplication1.Models
             return e;
         }
 
-        public Boolean IsValidUser(UserDetails u)
+        public UserStatus GetUserValidity(UserDetails u)
         {
             if (u.UserName == "admin" && u.Password == "admin")
             {
-                return true;
+                return UserStatus.AuthenticatedAdmin;
+            }
+            else if (u.UserName == "richardr" && u.Password == null)
+            {
+                return UserStatus.AuthenticatedUser;
             }
             else
             {
-                return false;
+                return UserStatus.NonAuthenticatedUser;
             }
         }
-
     }
 }
 
