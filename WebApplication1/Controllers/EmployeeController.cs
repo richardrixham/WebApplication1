@@ -80,6 +80,10 @@ namespace WebApplication1.Controllers
                 empViewModels.Add(empViewModel);
             }
             employeeListViewModel.Employees = empViewModels;
+
+            employeeListViewModel.FooterData = new FooterViewModel();
+            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
             return View("Index", employeeListViewModel);
         }
     }
