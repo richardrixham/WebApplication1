@@ -17,17 +17,19 @@ namespace WebApplication1.Controllers
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult AddNew()
         {
             CreateEmployeeViewModel employeeListViewModel = new CreateEmployeeViewModel();
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
-            employeeListViewModel.UserName = User.Identity.Name; //New Line
+//            employeeListViewModel.FooterData = new FooterViewModel();
+//            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+//            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+//            employeeListViewModel.UserName = User.Identity.Name; //New Line
             return View("CreateEmployee", employeeListViewModel);
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -52,10 +54,10 @@ namespace WebApplication1.Controllers
                         {
                             vm.Salary = ModelState["Salary"].Value.AttemptedValue;
                         }
-                        vm.FooterData = new FooterViewModel();
-                        vm.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
-                        vm.FooterData.Year = DateTime.Now.Year.ToString();
-                        vm.UserName = User.Identity.Name; //New Line
+//                        vm.FooterData = new FooterViewModel();
+//                        vm.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+//                        vm.FooterData.Year = DateTime.Now.Year.ToString();
+//                        vm.UserName = User.Identity.Name; //New Line
                         return View("CreateEmployee", vm); // Day 4 Change - Passing e here
                     }
 
@@ -65,11 +67,11 @@ namespace WebApplication1.Controllers
             return new EmptyResult();
         }
 
-
+        [HeaderFooterFilter]
         public ActionResult Index()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
-            employeeListViewModel.UserName = User.Identity.Name;
+//            employeeListViewModel.UserName = User.Identity.Name;
 
             EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
 
@@ -93,9 +95,9 @@ namespace WebApplication1.Controllers
             }
             employeeListViewModel.Employees = empViewModels;
 
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+//            employeeListViewModel.FooterData = new FooterViewModel();
+//            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+//            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
             return View("Index", employeeListViewModel);
         }
 
