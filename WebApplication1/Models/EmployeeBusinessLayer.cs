@@ -9,6 +9,14 @@ namespace WebApplication1.Models
 {
     public class EmployeeBusinessLayer
     {
+
+        public void UploadEmployees(List<Employee> employees)
+        {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            salesDal.Employees.AddRange(employees);
+            salesDal.SaveChanges();
+        }
+
         public List<Employee> GetEmployees()
         {
             SalesERPDAL salesDal = new SalesERPDAL();
