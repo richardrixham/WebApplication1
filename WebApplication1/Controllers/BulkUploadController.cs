@@ -34,6 +34,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index", "Employee");
         }
 
+        [HandleError]
         private List<Employee> GetEmployees(FileUploadViewModel model)
         {
             List<Employee> employees = new List<Employee>();
